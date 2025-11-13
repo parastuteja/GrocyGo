@@ -4,6 +4,8 @@ import Categories from '../Components/Categories'
 import BestSeller from '../Components/BestSeller'
 import BottomBanner from '../Components/BottomBanner'
 import NewsLetter from '../Components/newsLetter'
+import Footer from '../Components/Footer'
+import Login from '../Components/Login'
 
 function Home() {
   return (
@@ -13,6 +15,8 @@ function Home() {
 <BestSeller/>
 <BottomBanner/>
 <NewsLetter/>
+
+
     </div>
   )
 }

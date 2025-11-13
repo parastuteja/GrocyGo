@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { assets } from '../assets/grocygoassets/assets'
-import {useAppContext} from '../Context/AppContext'
+import { useAppContext } from '../Context/AppContext'
+
 function Navbar() {
 
    const [open, setOpen] = useState(false)
-   const {user,setUser,setShowUserLogin,navigate}=useAppContext()
+   const {user,setUser,ShowUserLogin,setShowUserLogin,navigate}=useAppContext()
    const logOut  =()=>{
     setUser(null)
     navigate('/')
@@ -33,7 +34,10 @@ function Navbar() {
                     <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">3</button>
                 </div>
 
-               {!user ?( <button onClick={()=>{setShowUserLogin(true)}} className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full">
+               {!user ?( <button onClick={()=>{
+        
+                setShowUserLogin(true)
+                }} className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full">
                     Login
                 </button>):(
                     <div className='relative group'>
