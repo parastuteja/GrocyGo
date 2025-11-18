@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { assets, dummyProducts } from "../assets/grocygoassets/assets";
+import {  dummyProducts } from "../assets/grocygoassets/assets";
 import toast from "react-hot-toast";
 export const AppContext=createContext()
 export const AppContextProvider=({children})=>{
@@ -48,10 +48,27 @@ export const AppContextProvider=({children})=>{
     toast.success('item removed successfully')
    }
      }
+     const getCartCount=()=>{
+        let totalCount=0;
+        for(const item in cartItems){
+            totalCount += cartItems[item]
+        }
+        return(totalCount)
+     }
+     const getCartAmount=()=>{
+        let totalAmount=0
+        for(const items in cartItems){
+        let itemInfo =products.find((product)=>product._id ===items)
+        if(cartItems[items]>0){
+            totalAmount+= itemInfo.offerPrice *cartItems[items]
+            return Math.floor(totalAmount*100)/100
+        }
+        }
+     }
      useEffect(()=>{
         setProducts(dummyProducts)
      },[])
-const value={navigate,user,setUser,isSeller,setisSeller,products,currency,updateCartItem,addToCart,removeFromCart,cartItems,showUserLogin,setShowUserLogin,searchQuery,setSearchQuery}
+const value={navigate,user,setUser,isSeller,setisSeller,products,currency,updateCartItem,addToCart,removeFromCart,cartItems,showUserLogin,setShowUserLogin,searchQuery,setSearchQuery,getCartAmount,getCartCount,fetchProducts}
 return<AppContext.Provider value={value}>
     {children}
 </AppContext.Provider>
