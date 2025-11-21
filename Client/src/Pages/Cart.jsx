@@ -55,7 +55,7 @@ if(products.length>0&& cartItems){
                                     <p>Weight: <span>{product.weight || "N/A"}</span></p>
                                     <div className='flex items-center'>
                                         <p>Qty:</p>
-                                        <select className='outline-none'>
+                                        <select onChange={e=>updateCartItem(product._id,Number(e.target.value))}value={cartItems[product._id]} className='outline-none'>
                                             {Array(cartItems[product._id]>9?cartItems[product._id]:9).fill('').map((_, index) => (
                                                 <option key={index} value={index + 1}>{index + 1}</option>
                                             ))}
@@ -65,7 +65,7 @@ if(products.length>0&& cartItems){
                             </div>
                         </div>
                         <p className="text-center">{currency}{product.offerPrice * product.quantity}</p>
-                        <button onClick={()=>{ removeFromCart()}} className="cursor-pointer mx-auto">
+                        <button onClick={()=>{ removeFromCart(product._id)}} className="cursor-pointer mx-auto">
                             <img src={assets.remove_icon} alt="remove" className="inline-block w-6 h-6" />
                         </button>
                     </div>)
@@ -86,7 +86,7 @@ if(products.length>0&& cartItems){
                     <p className="text-sm font-medium uppercase">Delivery Address</p>
                     <div className="relative flex justify-between items-start mt-2">
                         <p className="text-gray-500">{selectedAddress?`${selectedAddress.street},${selectedAddress.city},${selectedAddress.state},${selectedAddress.country}`:'No address found'}</p>
-                        <button onClick={() => setShowAddress(!showAddress)} className="text-indigo-500 hover:underline cursor-pointer">
+                        <button onClick={() => setShowAddress(!showAddress)} className="text-primary hover:underline cursor-pointer">
                             Change
                         </button>
                         {showAddress && (
@@ -94,7 +94,7 @@ if(products.length>0&& cartItems){
                                { addresses.map((index,address)=>(<p onClick={() =>{setSelectedAddress(address) ;setShowAddress(false)}} className="text-gray-500 p-2 hover:bg-gray-100">
                                     {address.street},{address.city},{address.state},{address.country}
                                 </p>))}
-                                <p onClick={() =>  navigate('/add-adress')} className="text-indigo-500 text-center cursor-pointer p-2 hover:bg-indigo-500/10">
+                                <p onClick={() =>  navigate('/add-address')} className="text-primary text-center cursor-pointer p-2 hover:bg-indigo-500/10">
                                     Add address
                                 </p>
                             </div>
@@ -128,7 +128,7 @@ if(products.length>0&& cartItems){
                 </div>
 
                 <button onClick={placeOrder} className="w-full py-3 mt-6 cursor-pointer bg-primary text-white font-medium hover:bg-primary-dull transition">
-                   {paymentOption==='COD'?'place Order':'Proceed To Checkout'}
+                   {paymentOption==='COD'?'Place Order':'Proceed To Checkout'}
                 </button>
             </div>
         </div>
