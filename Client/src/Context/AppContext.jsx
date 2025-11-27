@@ -7,7 +7,7 @@ export const AppContextProvider=({children})=>{
     const currency = import.meta.env.VITE_CURRENCY;
     const navigate=useNavigate()
     const[user,setUser]=useState(null)
-    const [isSeller,setisSeller]=useState(false)
+    const [isSeller,setIsSeller]=useState(false)
      const [showUserLogin,setShowUserLogin]=useState(false)
      const [products,setProducts]=useState([])
      const [cartItems,setCartItems]=useState({})
@@ -69,7 +69,7 @@ console.log('item removed')
      useEffect(()=>{
         setProducts(dummyProducts)
      },[])
-const value={navigate,user,setUser,isSeller,setisSeller,products,currency,updateCartItem,addToCart,removeFromCart,cartItems,showUserLogin,setShowUserLogin,searchQuery,setSearchQuery,getCartAmount,getCartCount,fetchProducts}
+const value={navigate,user,setUser,isSeller,setIsSeller,products,currency,updateCartItem,addToCart,removeFromCart,cartItems,showUserLogin,setShowUserLogin,searchQuery,setSearchQuery,getCartAmount,getCartCount,fetchProducts}
 return<AppContext.Provider value={value}>
     {children}
 </AppContext.Provider>
