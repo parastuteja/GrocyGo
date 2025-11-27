@@ -12,8 +12,14 @@ import ProductDetails from './Pages/ProductDetails'
 import Cart from './Pages/Cart'
 import AddAddress from './Pages/AddAddress'
 import MyOrders from './Pages/myOrders'
+import SellerLayout from './Pages/sELLER/SellerLayout'
 import SellerLogin from './Components/Seller/SellerLogin'
-import SellerLayout from './Pages/SELLER/SellerLayout'
+import AddProduct from './Pages/SELLER/AddProduct'
+import ProductList from './Pages/SELLER/ProductList'
+import Orders from './Pages/SELLER/Orders'
+
+
+
 
 
 
@@ -38,9 +44,17 @@ function App() {
      <Route path='/cart'element={<Cart/>}/>
    <Route path='/add-address' element={<AddAddress/>}/>
    <Route path='my-orders' element={<MyOrders/>}   />
-   <Route path='/seller' element={isSeller ? <SellerLayout/>:<SellerLogin/>}>
 
-   </Route>
+  <Route path="/seller" element={isSeller ? <SellerLayout/> : <SellerLogin/>}>
+  
+  <Route index element={<AddProduct/>} />
+
+  <Route path="product-list" element={<ProductList/>} />
+
+  <Route path="orders" element={<Orders/>} />
+
+</Route>
+
  
 
   
