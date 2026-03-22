@@ -1,7 +1,10 @@
 import express from 'express'
-import { register } from '../controller/userController.js';
+import { isAuth, login, logoutUser, register } from '../controller/userController.js';
+import authUser from '../middleware/authUser.js';
 const userRouter =express.Router();
 console.log('file loaded')
 userRouter.post('/register',register)
+userRouter.post('/login',login)
+userRouter.post('/logout',logoutUser,authUser)
 
 export default userRouter
