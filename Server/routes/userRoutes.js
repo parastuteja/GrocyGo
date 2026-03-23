@@ -6,5 +6,6 @@ console.log('file loaded')
 userRouter.post('/register',register)
 userRouter.post('/login',login)
 userRouter.post('/logout',logoutUser,authUser)
+userRouter.get('/isAuth',authUser,isAuth)
 
 export default userRouter
