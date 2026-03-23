@@ -6,6 +6,8 @@ import 'dotenv/config'
 import userRouter from './routes/userRoutes.js';
 import sellerRouter from './routes/sellerRoutes.js';
 import connectCloudinary from './configs/cloudinary.js';
+import productRouter from './routes/productRoutes.js';
+import cartRouter from './routes/cartRoutes.js';
 
 const app= express();
 const AllowedOrigins=['http://localhost:5173']
@@ -20,6 +22,10 @@ app.use(cors({origin:AllowedOrigins, credentials:true}))
 app.get('/',(req,res)=>res.send("API is Working"))
 app.use('/api/user',userRouter)
 app.use('/api/seller',sellerRouter)
+app.use('/api/product',productRouter)
+app.use('/api/cart',cartRouter)
+
+
 app.listen(port,()=>{
     console.log(`server is running on http://localhost:${port}`)
 })
