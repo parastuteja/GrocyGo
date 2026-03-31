@@ -43,6 +43,8 @@ const connectCloudinary = async () => {
     secure: true,
   });
 
+  // Debug: Log Cloudinary config (do NOT log secrets in production)
+  // console.log("Cloudinary config:", { cloud_name, api_key, api_secret });
   console.log("✅ Cloudinary connected");
 };
 
