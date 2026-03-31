@@ -16,7 +16,21 @@ export const AppContextProvider=({children})=>{
      const [cartItems,setCartItems]=useState({})
      const [searchQuery,setSearchQuery]=useState('')
 
-
+const fetchSeller=async()=>{
+try {
+    const {data}=await axios.get('/api/seller/isAuth')
+   if(data.success){
+    setIsSeller(true)
+   }
+   else{
+    setIsSeller(false);
+   }
+} catch (error) {
+    toast.error(error.mess
+        
+    )
+}
+}
      const fetchProducts = async ()=>{
         setProducts(dummyProducts)
      }
@@ -70,6 +84,7 @@ console.log('item removed')
          return Math.floor(totalAmount*100)/100
      }
      useEffect(()=>{
+    fetchSeller()
         setProducts(dummyProducts)
      },[])
 const value={navigate,user,setUser,isSeller,setIsSeller,products,currency,updateCartItem,addToCart,removeFromCart,cartItems,showUserLogin,setShowUserLogin,searchQuery,setSearchQuery,getCartAmount,getCartCount,fetchProducts,axios}

@@ -1,10 +1,12 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { assets } from "../../assets/grocygoassets/assets";
-import { useAppContext } from "../../Context/AppContext";
+import { useAppContext } from '../../Context/AppContext'
+
+import toast from "react-hot-toast";
+
 
 const SellerLayout = () => {
-const {setIsSeller}=useAppContext()
-    
+    const{axios,navigate}=useAppContext()
 
     const sidebarLinks = [
         { name: "Add Product", path: "/seller", icon: assets.add_icon},
@@ -12,9 +14,19 @@ const {setIsSeller}=useAppContext()
         { name: "Orders", path: "/seller/orders", icon: assets.order_icon},
     ];
     const logout = async()=>{
-        setIsSeller(false);
+       try {
+       const {data}=await axios.get('/api/seller/logout')
+       if(data.success){
+        toast.success(data.message)
+        navigate('/')
+       }
+       else{
+        toast.error(data.message)
+       }
+       } catch (error) {
+        toast.error(error.message)
+       }
     }
-
     return (
         <>
             <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">

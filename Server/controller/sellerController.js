@@ -1,8 +1,13 @@
 import jwt from'jsonwebtoken'
+import { envVal } from '../utils/env.js'
+
+const SELLER_EMAIL = envVal(process.env.SELLER_EMAIL)
+const SELLER_PASSWORD = envVal(process.env.SELLER_PASSWORD)
+
 export const sellerLogin =async(req,res)=>{
    try {
-     const{email,passowrd}=req.body
-    if(passowrd===process.env.SELLER_PASSWORD&& email===process.env.SELLER_EMAIL){
+     const{email,password}=req.body
+    if(password===SELLER_PASSWORD&& email===SELLER_EMAIL){
         const token = jwt.sign({email},process.env.JWT_SECRET,{expiresIn:'7d'})
          res.cookie("sellerToken", token, {
       httpOnly: true,

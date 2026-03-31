@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken'
+import { envVal } from '../utils/env.js'
+
  const authSeller =async(req,res,next)=>{
 const {sellerToken}=req.cookies
 if(!sellerToken){
@@ -6,7 +8,7 @@ if(!sellerToken){
 }
 try{
 const tokenDecode= jwt.verify(sellerToken,process.env.JWT_SECRET)
-if(tokenDecode.email===process.env.SELLER_EMAIL){
+if(tokenDecode.email===envVal(process.env.SELLER_EMAIL)){
     next();
 }
 else{

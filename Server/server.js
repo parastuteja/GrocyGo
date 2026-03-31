@@ -12,7 +12,7 @@ import addressRouter from './routes/addressRoutes.js';
 import orderRouter from './routes/orderRoutes.js';
 
 const app= express();
-const AllowedOrigins=['http://localhost:5173']
+const AllowedOrigins=['http://localhost:5174','http://localhost:5173']
 const port= process.env.PORT || 4000
 await connectDB()
 await connectCloudinary()
